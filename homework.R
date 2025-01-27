@@ -19,6 +19,8 @@
 
 # ANSWER
 
+library(readr)
+
 
 ### QUESTION 2 ----- 
 
@@ -39,13 +41,14 @@
 #     5          fas          faster         TRUE   
 #     6          slo          slower         TRUE
 # etc..
-
+?read_delim
 # A list of column names are provided to use:
 
 col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
-
+ds1 <- read_delim("C:/Users/suprr/OneDrive/Documents/GitHub/259-langbasics-importing-hw/data_A/6191_1.txt", skip=7, col_names = col_names)
+ds1
 
 
 ### QUESTION 3 ----- 
@@ -55,7 +58,8 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Then write the new data to a CSV file in the "data_cleaned" folder
 
 # ANSWER
-
+ds1$trial_num <- ds1$trial_num + 99
+write_csv(ds1, "datacleaned/dc1")
 
 ### QUESTION 4 ----- 
 
@@ -64,6 +68,8 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
 
+datafiles <- list.files("data_A", full.names = T)
+
 
 ### QUESTION 5 ----- 
 
@@ -71,6 +77,7 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
 
+ds <- read_delim(datafiles, skip = 7, col_names =col_names)
 
 ### QUESTION 6 -----
 
@@ -84,6 +91,9 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
 
+ds <- read_delim(datafiles, skip = 7, col_names = col_names, col_types = "iccl")
+
+ds$trial_num <- ds$trial_num + 99
 
 ### QUESTION 7 -----
 
@@ -93,7 +103,8 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Re-import the data so that filename becomes a column
 
 # ANSWER
-
+?read_tsv
+ds <- read_delim(datafiles, skip = 7, col_names = col_names, col_types = "iccl", id = "ID")
 
 ### QUESTION 8 -----
 
@@ -103,3 +114,8 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
 
+library(readxl)
+?read_xlsx
+
+sheet1 <- read_xlsx("data_B/participant_info.xlsx", sheet = 1)
+sheet2 <- read_xlsx("data_B/participant_info.xlsx", sheet = 2, col_names = c("Participant", "Test Date"))

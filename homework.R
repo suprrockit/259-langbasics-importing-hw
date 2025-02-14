@@ -1,5 +1,5 @@
 #PSYC 259 Homework 1 - Data Import
-#For full credit, provide answers for at least 6/8 questions
+#For full credit, provide answers for at least 6/8 questions (8/8)
 
 #List names of students collaborating with (no more than 2): 
 
@@ -49,6 +49,9 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # ANSWER
 ds1 <- read_delim("C:/Users/suprr/OneDrive/Documents/GitHub/259-langbasics-importing-hw/data_A/6191_1.txt", skip=7, col_names = col_names)
 ds1
+
+#MComment: Make sure to use relative paths, rather than absolute. You can also use read_tsv with the same commands (rather than read_delim)
+ds1 <- read_tsv("data_A/6191_1.txt", skip = 7, col_names = col_names)
 
 
 ### QUESTION 3 ----- 
@@ -105,6 +108,8 @@ ds$trial_num <- ds$trial_num + 99
 # ANSWER
 ?read_tsv
 ds <- read_delim(datafiles, skip = 7, col_names = col_names, col_types = "iccl", id = "ID")
+
+#Mcomment: Also works with read_tsv
 
 ### QUESTION 8 -----
 
